@@ -17,6 +17,7 @@
  */
 
 import * as stream from '@openpgp/web-stream-tools';
+import { Base64 } from 'js-base64';
 import util from '../util';
 
 const Buffer = util.getNodeBuffer();
@@ -30,8 +31,8 @@ if (Buffer) {
     return new Uint8Array(b.buffer, b.byteOffset, b.byteLength);
   };
 } else {
-  encodeChunk = buf => btoa(util.uint8ArrayToString(buf));
-  decodeChunk = str => util.stringToUint8Array(atob(str));
+  encodeChunk = buf => Base64.btoa(util.uint8ArrayToString(buf));
+  decodeChunk = str => util.stringToUint8Array(Base64.atob(str));
 }
 
 /**
